@@ -105,6 +105,11 @@ Do not assume I already have a serviceKey.
 
 자세한 내용은 [인증/키 모델](docs/auth-model.md)을 보세요.
 
+## 바로 복붙할 프롬프트
+
+- [Prompt Pack](docs/prompt-pack.md)
+- [Use Cases](docs/use-cases.md)
+
 ## 에이전트별 사용법
 
 - [OpenClaw에서 쓰는 법](docs/for-openclaw.md)
