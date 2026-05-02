@@ -1,0 +1,19 @@
+{
+  "id": "kosis-population",
+  "title": "KOSIS 인구·사회 통계",
+  "provider": "통계청/KOSIS",
+  "auth": "user-key-required",
+  "env": "KOSIS_API_KEY",
+  "portalSearch": "https://kosis.kr/openapi/",
+  "endpoint": "https://kosis.kr/openapi/Param/statisticsParameterData.do",
+  "method": "GET",
+  "defaultParams": {
+    "method": "getList",
+    "apiKey": "${KOSIS_API_KEY}",
+    "format": "json",
+    "jsonVD": "Y"
+  },
+  "outputs": ["통계표", "분류", "시점", "값", "단위"],
+  "fallback": "KOSIS key와 통계표 ID가 없으면 신청/탐색 방법을 안내하고 후보 통계표를 정리한다.",
+  "safety": ["통계표 ID/분류코드 확인", "시점과 단위 표시", "비교 시 정의 차이 확인"]
+}

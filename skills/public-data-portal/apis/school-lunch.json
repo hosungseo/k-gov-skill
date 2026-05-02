@@ -1,0 +1,22 @@
+{
+  "id": "neis-school-lunch",
+  "title": "NEIS 학교 급식 식단 정보",
+  "provider": "교육부/한국교육학술정보원",
+  "auth": "user-key-required",
+  "env": "DATA_GO_KR_SERVICE_KEY",
+  "portalSearch": "https://www.data.go.kr/tcs/dss/selectDataSetList.do?keyword=NEIS%20급식%20식단",
+  "endpoint": "https://open.neis.go.kr/hub/mealServiceDietInfo",
+  "method": "GET",
+  "defaultParams": {
+    "KEY": "${DATA_GO_KR_SERVICE_KEY}",
+    "Type": "json",
+    "pIndex": "1",
+    "pSize": "10",
+    "ATPT_OFCDC_SC_CODE": "B10",
+    "SD_SCHUL_CODE": "7010536",
+    "MLSV_YMD": "20260502"
+  },
+  "outputs": ["학교명", "급식일자", "식단", "원산지/영양정보 후보"],
+  "fallback": "교육청 코드와 학교 코드를 먼저 확인하고, 키가 없으면 신청 방법과 샘플 파라미터를 안내한다.",
+  "safety": ["학교코드/교육청코드 확인", "급식일자 기준 표시", "알레르기 정보는 원문 확인"]
+}

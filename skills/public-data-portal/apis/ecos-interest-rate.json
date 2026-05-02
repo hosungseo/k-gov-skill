@@ -1,0 +1,14 @@
+{
+  "id": "ecos-interest-rate",
+  "title": "한국은행 ECOS 기준금리/시장금리",
+  "provider": "한국은행",
+  "auth": "user-key-required",
+  "env": "ECOS_API_KEY",
+  "portalSearch": "https://ecos.bok.or.kr/api/",
+  "endpoint": "https://ecos.bok.or.kr/api/StatisticSearch/${ECOS_API_KEY}/json/kr/1/10/722Y001/D/20250101/20251231/0101000",
+  "method": "GET",
+  "defaultParams": {},
+  "outputs": ["통계표", "시점", "값", "단위"],
+  "fallback": "ECOS API key가 없으면 통계표 코드와 호출 URL 형식을 안내한다.",
+  "safety": ["통계표 코드와 주기 확인", "단위/시점 표시", "정책 해석 전 원자료 확인"]
+}

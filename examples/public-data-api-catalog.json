@@ -1,5 +1,5 @@
 {
-  "count": 2,
+  "count": 5,
   "apis": [
     {
       "id": "molit-apartment-trade",
@@ -32,6 +32,58 @@
       ]
     },
     {
+      "id": "ecos-interest-rate",
+      "title": "한국은행 ECOS 기준금리/시장금리",
+      "provider": "한국은행",
+      "auth": "user-key-required",
+      "env": "ECOS_API_KEY",
+      "portalSearch": "https://ecos.bok.or.kr/api/",
+      "endpoint": "https://ecos.bok.or.kr/api/StatisticSearch/${ECOS_API_KEY}/json/kr/1/10/722Y001/D/20250101/20251231/0101000",
+      "method": "GET",
+      "defaultParams": {},
+      "outputs": [
+        "통계표",
+        "시점",
+        "값",
+        "단위"
+      ],
+      "fallback": "ECOS API key가 없으면 통계표 코드와 호출 URL 형식을 안내한다.",
+      "safety": [
+        "통계표 코드와 주기 확인",
+        "단위/시점 표시",
+        "정책 해석 전 원자료 확인"
+      ]
+    },
+    {
+      "id": "kosis-population",
+      "title": "KOSIS 인구·사회 통계",
+      "provider": "통계청/KOSIS",
+      "auth": "user-key-required",
+      "env": "KOSIS_API_KEY",
+      "portalSearch": "https://kosis.kr/openapi/",
+      "endpoint": "https://kosis.kr/openapi/Param/statisticsParameterData.do",
+      "method": "GET",
+      "defaultParams": {
+        "method": "getList",
+        "apiKey": "${KOSIS_API_KEY}",
+        "format": "json",
+        "jsonVD": "Y"
+      },
+      "outputs": [
+        "통계표",
+        "분류",
+        "시점",
+        "값",
+        "단위"
+      ],
+      "fallback": "KOSIS key와 통계표 ID가 없으면 신청/탐색 방법을 안내하고 후보 통계표를 정리한다.",
+      "safety": [
+        "통계표 ID/분류코드 확인",
+        "시점과 단위 표시",
+        "비교 시 정의 차이 확인"
+      ]
+    },
+    {
       "id": "mois-resident-population",
       "title": "행정안전부 주민등록 인구현황",
       "provider": "행정안전부",
@@ -57,6 +109,37 @@
         "집계값 중심으로 사용",
         "기준일 표시",
         "대량 호출 전 이용조건 확인"
+      ]
+    },
+    {
+      "id": "neis-school-lunch",
+      "title": "NEIS 학교 급식 식단 정보",
+      "provider": "교육부/한국교육학술정보원",
+      "auth": "user-key-required",
+      "env": "DATA_GO_KR_SERVICE_KEY",
+      "portalSearch": "https://www.data.go.kr/tcs/dss/selectDataSetList.do?keyword=NEIS%20급식%20식단",
+      "endpoint": "https://open.neis.go.kr/hub/mealServiceDietInfo",
+      "method": "GET",
+      "defaultParams": {
+        "KEY": "${DATA_GO_KR_SERVICE_KEY}",
+        "Type": "json",
+        "pIndex": "1",
+        "pSize": "10",
+        "ATPT_OFCDC_SC_CODE": "B10",
+        "SD_SCHUL_CODE": "7010536",
+        "MLSV_YMD": "20260502"
+      },
+      "outputs": [
+        "학교명",
+        "급식일자",
+        "식단",
+        "원산지/영양정보 후보"
+      ],
+      "fallback": "교육청 코드와 학교 코드를 먼저 확인하고, 키가 없으면 신청 방법과 샘플 파라미터를 안내한다.",
+      "safety": [
+        "학교코드/교육청코드 확인",
+        "급식일자 기준 표시",
+        "알레르기 정보는 원문 확인"
       ]
     }
   ]
