@@ -27,6 +27,7 @@
 
 ```bash
 npm run example:public-data
+npm run example:gazette
 ```
 
 공공데이터포털 `serviceKey`가 없으면 에러를 내는 대신, 어떤 API를 신청해야 하는지, 어떤 환경변수를 넣어야 하는지, 어떤 파라미터가 필요한지 JSON으로 안내합니다.
@@ -77,6 +78,7 @@ Do not assume I already have a serviceKey.
 ## 첫 레시피
 
 - [공공데이터포털 API 첫 호출 준비](recipes/public-data-first-call.md)
+- [관보 직제·정원 Watch 예제](examples/gazette-jikje-watch/README.md)
 - [관보에서 직제·정원 관련 고시 찾기](recipes/gazette-jikje-watch.md)
 - [부처별 보도자료 브리핑](recipes/ministry-press-briefing.md)
 

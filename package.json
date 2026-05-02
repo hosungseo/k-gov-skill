@@ -5,8 +5,9 @@
   "type": "module",
   "scripts": {
     "example:public-data": "node scripts/public-data-first-call.mjs",
-    "check": "node scripts/validate-skills.mjs && node scripts/public-data-first-call.mjs --topic population --dry-run",
+    "check": "node scripts/validate-skills.mjs && node scripts/public-data-first-call.mjs --topic population --dry-run && node scripts/gazette-jikje-watch.mjs > /tmp/gazette-jikje-watch.json",
     "catalog": "node scripts/list-skills.mjs",
-    "validate:skills": "node scripts/validate-skills.mjs"
+    "validate:skills": "node scripts/validate-skills.mjs",
+    "example:gazette": "node scripts/gazette-jikje-watch.mjs"
   }
 }
