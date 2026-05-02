@@ -155,6 +155,7 @@ npm run --silent catalog > examples/skill-catalog.json
 
 - [Status](STATUS.md)
 - [Roadmap](ROADMAP.md)
+- [K-Gov Ready Demo integration](docs/kgov-ready-demo-integration.md)
 
 ## 상태
 
