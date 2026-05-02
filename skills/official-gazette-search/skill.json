@@ -1,0 +1,28 @@
+{
+  "name": "official-gazette-search",
+  "title": "관보 검색",
+  "category": "gazette",
+  "auth": "none",
+  "env": [],
+  "purpose": "관보 고시·공고·직제·입법예고 문서를 찾아 근거 목록으로 정리한다.",
+  "entrypoint": "skills/official-gazette-search/README.md",
+  "outputs": [
+    "문서명",
+    "게재일",
+    "기관명",
+    "문서유형",
+    "원문/readable 링크",
+    "검토 쟁점"
+  ],
+  "safety": [
+    "중요 인용은 PDF 원문 대조",
+    "게재일/문서번호 보존",
+    "추출 오류 표시"
+  ],
+  "inspiredBy": [
+    {
+      "repo": "opendataloader-project/opendataloader-pdf",
+      "url": "https://github.com/opendataloader-project/opendataloader-pdf"
+    }
+  ]
+}

@@ -3,49 +3,196 @@
   "skills": [
     {
       "name": "hwp-document-tools",
-      "auth": "불필요.",
+      "title": "HWP/HWPX 문서 처리",
+      "category": "document",
+      "auth": "none",
       "env": [],
-      "purpose": "HWP/HWPX 문서를 Markdown/JSON으로 읽고, 표·항목·쟁점을 추출해 에이전트가 검토할 수 있게 만드는 스킬입니다."
+      "purpose": "HWP/HWPX 문서를 로컬에서 읽고 표·항목·쟁점을 추출한다.",
+      "entrypoint": "skills/hwp-document-tools/README.md",
+      "outputs": [
+        "Markdown 변환본",
+        "표 목록",
+        "요구사항",
+        "쟁점표",
+        "보완요청",
+        "원문 대조 필요 지점"
+      ],
+      "safety": [
+        "비공개 문서 외부 업로드 금지",
+        "변환본은 원문 대체 불가",
+        "중요 표 원문 대조"
+      ],
+      "inspiredBy": [
+        {
+          "repo": "chrisryugj/kordoc-ai",
+          "url": "https://github.com/chrisryugj/kordoc-ai"
+        },
+        {
+          "repo": "jkf87/hwpx-skill",
+          "url": "https://github.com/jkf87/hwpx-skill"
+        },
+        {
+          "repo": "edwardkim/rhwp",
+          "url": "https://github.com/edwardkim/rhwp"
+        }
+      ]
     },
     {
       "name": "korean-law-search",
-      "auth": "선택.",
+      "title": "한국 법령 검색",
+      "category": "law",
+      "auth": "optional-user-key",
       "env": [
         "LAW_GO_KR_OC"
       ],
-      "purpose": "법령/조문/행정규칙/판례·해석례 후보를 찾아 공무원 업무 문서에 붙일 수 있는 근거표로 정리하는 스킬입니다."
+      "purpose": "법령/조문/행정규칙/판례·해석례 후보를 근거표로 정리한다.",
+      "entrypoint": "skills/korean-law-search/README.md",
+      "outputs": [
+        "법령명",
+        "조문번호",
+        "본문 발췌",
+        "원문 URL",
+        "인용 문안",
+        "불확실한 부분"
+      ],
+      "safety": [
+        "법률 자문처럼 단정하지 않음",
+        "현행 조문 본문 우선",
+        "시행일/개정연혁 분리 확인"
+      ],
+      "inspiredBy": [
+        {
+          "repo": "chrisryugj/korean-law-mcp",
+          "url": "https://github.com/chrisryugj/korean-law-mcp"
+        },
+        {
+          "repo": "legalize-kr/legalize-kr",
+          "url": "https://github.com/legalize-kr/legalize-kr"
+        }
+      ]
     },
     {
       "name": "national-assembly-search",
-      "auth": "필요/선택.",
+      "title": "국회자료 검색",
+      "category": "assembly",
+      "auth": "optional-user-key",
       "env": [
         "ASSEMBLY_API_KEY"
       ],
-      "purpose": "의안, 회의록, 국회 일정, 의원실 질의 대응 자료를 탐색하는 스킬입니다."
+      "purpose": "의안, 회의록, 일정, 질의 대응 자료를 탐색한다.",
+      "entrypoint": "skills/national-assembly-search/README.md",
+      "outputs": [
+        "의안/회의록 후보",
+        "일자",
+        "진행상태",
+        "쟁점",
+        "답변 근거"
+      ],
+      "safety": [
+        "최신 상태 확인",
+        "대외 답변 전 사람 검토",
+        "출처 보존"
+      ],
+      "inspiredBy": [
+        {
+          "repo": "NomaDamas/k-skill",
+          "url": "https://github.com/NomaDamas/k-skill"
+        }
+      ]
     },
     {
       "name": "official-gazette-search",
-      "auth": "불필요.",
+      "title": "관보 검색",
+      "category": "gazette",
+      "auth": "none",
       "env": [],
-      "purpose": "관보의 고시·공고·직제·입법예고·인사 관련 문서를 찾아 에이전트가 읽을 수 있는 근거 목록으로 정리하는 스킬입니다."
+      "purpose": "관보 고시·공고·직제·입법예고 문서를 찾아 근거 목록으로 정리한다.",
+      "entrypoint": "skills/official-gazette-search/README.md",
+      "outputs": [
+        "문서명",
+        "게재일",
+        "기관명",
+        "문서유형",
+        "원문/readable 링크",
+        "검토 쟁점"
+      ],
+      "safety": [
+        "중요 인용은 PDF 원문 대조",
+        "게재일/문서번호 보존",
+        "추출 오류 표시"
+      ],
+      "inspiredBy": [
+        {
+          "repo": "opendataloader-project/opendataloader-pdf",
+          "url": "https://github.com/opendataloader-project/opendataloader-pdf"
+        }
+      ]
     },
     {
       "name": "org-quota-review",
-      "auth": "선택.",
+      "title": "직제·정원 검토 패킷",
+      "category": "workflow-packet",
+      "auth": "mixed",
       "env": [
         "LAW_GO_KR_OC",
         "ASSEMBLY_API_KEY",
         "DATA_GO_KR_SERVICE_KEY"
       ],
-      "purpose": "부처의 기구·정원 요구자료를 검토 가능한 업무 패킷으로 바꾸는 스킬입니다."
+      "purpose": "기구·정원 요구자료를 검토 가능한 업무 패킷으로 나눈다.",
+      "entrypoint": "skills/org-quota-review/README.md",
+      "outputs": [
+        "요청 요약",
+        "근거 계획",
+        "쟁점표",
+        "보완요구",
+        "반대검토",
+        "검토의견 초안"
+      ],
+      "safety": [
+        "최종 판단은 사람 검토",
+        "비공개 자료 외부 업로드 금지",
+        "숫자/법령 출처 표시"
+      ],
+      "inspiredBy": [
+        {
+          "repo": "Q00/ouroboros",
+          "url": "https://github.com/Q00/ouroboros"
+        }
+      ]
     },
     {
       "name": "public-data-portal",
-      "auth": "필요/선택.",
+      "title": "공공데이터포털 API 준비/호출",
+      "category": "public-api",
+      "auth": "user-key-required",
       "env": [
         "DATA_GO_KR_SERVICE_KEY"
       ],
-      "purpose": "공공데이터포털 API를 에이전트가 쓰기 쉽게 준비하는 스킬입니다."
+      "purpose": "공공데이터포털 API 후보, 활용신청, serviceKey, 파라미터, fallback을 정리한다.",
+      "entrypoint": "skills/public-data-portal/README.md",
+      "outputs": [
+        "API 후보",
+        "활용신청 필요 여부",
+        "환경변수",
+        "파라미터",
+        "fallback",
+        "출처/기준일"
+      ],
+      "safety": [
+        "사용자 직접 발급 key 사용",
+        "대량 호출 전 rate limit 확인",
+        "개인정보 최소 처리"
+      ],
+      "inspiredBy": [
+        {
+          "repo": "Koomook/data-go-mcp-servers",
+          "url": "https://github.com/Koomook/data-go-mcp-servers"
+        },
+        {
+          "repo": "NomaDamas/k-skill",
+          "url": "https://github.com/NomaDamas/k-skill"
+        }
+      ]
     }
   ]
 }

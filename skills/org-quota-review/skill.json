@@ -1,0 +1,32 @@
+{
+  "name": "org-quota-review",
+  "title": "직제·정원 검토 패킷",
+  "category": "workflow-packet",
+  "auth": "mixed",
+  "env": [
+    "LAW_GO_KR_OC",
+    "ASSEMBLY_API_KEY",
+    "DATA_GO_KR_SERVICE_KEY"
+  ],
+  "purpose": "기구·정원 요구자료를 검토 가능한 업무 패킷으로 나눈다.",
+  "entrypoint": "skills/org-quota-review/README.md",
+  "outputs": [
+    "요청 요약",
+    "근거 계획",
+    "쟁점표",
+    "보완요구",
+    "반대검토",
+    "검토의견 초안"
+  ],
+  "safety": [
+    "최종 판단은 사람 검토",
+    "비공개 자료 외부 업로드 금지",
+    "숫자/법령 출처 표시"
+  ],
+  "inspiredBy": [
+    {
+      "repo": "Q00/ouroboros",
+      "url": "https://github.com/Q00/ouroboros"
+    }
+  ]
+}

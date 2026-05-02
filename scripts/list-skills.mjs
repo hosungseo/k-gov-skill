@@ -7,6 +7,23 @@ const rows = [];
 for (const name of fs.readdirSync(root).sort()) {
   const readme = path.join(root, name, "README.md");
   if (!fs.existsSync(readme)) continue;
+  const manifestPath = path.join(root, name, "skill.json");
+  if (fs.existsSync(manifestPath)) {
+    const data = JSON.parse(fs.readFileSync(manifestPath, "utf8"));
+    rows.push({
+      name: data.name,
+      title: data.title,
+      category: data.category,
+      auth: data.auth,
+      env: data.env || [],
+      purpose: data.purpose,
+      entrypoint: data.entrypoint,
+      outputs: data.outputs || [],
+      safety: data.safety || [],
+      inspiredBy: data.inspiredBy || []
+    });
+    continue;
+  }
   const text = fs.readFileSync(readme, "utf8");
   const purpose = (text.match(/## 목적\n\n([\s\S]*?)(\n##|$)/)?.[1] || text.split("\n").slice(2, 4).join(" ")).replace(/\s+/g, " ").trim();
   const auth = (text.match(/## 사용자 신청\/로그인\n\n([\s\S]*?)(\n##|$)/)?.[1] || "").split("\n").map(x => x.trim()).filter(Boolean)[0] || "TODO";

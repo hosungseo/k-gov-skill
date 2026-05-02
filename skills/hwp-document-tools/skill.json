@@ -1,0 +1,36 @@
+{
+  "name": "hwp-document-tools",
+  "title": "HWP/HWPX 문서 처리",
+  "category": "document",
+  "auth": "none",
+  "env": [],
+  "purpose": "HWP/HWPX 문서를 로컬에서 읽고 표·항목·쟁점을 추출한다.",
+  "entrypoint": "skills/hwp-document-tools/README.md",
+  "outputs": [
+    "Markdown 변환본",
+    "표 목록",
+    "요구사항",
+    "쟁점표",
+    "보완요청",
+    "원문 대조 필요 지점"
+  ],
+  "safety": [
+    "비공개 문서 외부 업로드 금지",
+    "변환본은 원문 대체 불가",
+    "중요 표 원문 대조"
+  ],
+  "inspiredBy": [
+    {
+      "repo": "chrisryugj/kordoc-ai",
+      "url": "https://github.com/chrisryugj/kordoc-ai"
+    },
+    {
+      "repo": "jkf87/hwpx-skill",
+      "url": "https://github.com/jkf87/hwpx-skill"
+    },
+    {
+      "repo": "edwardkim/rhwp",
+      "url": "https://github.com/edwardkim/rhwp"
+    }
+  ]
+}

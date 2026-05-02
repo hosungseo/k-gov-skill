@@ -1,0 +1,29 @@
+{
+  "name": "national-assembly-search",
+  "title": "국회자료 검색",
+  "category": "assembly",
+  "auth": "optional-user-key",
+  "env": [
+    "ASSEMBLY_API_KEY"
+  ],
+  "purpose": "의안, 회의록, 일정, 질의 대응 자료를 탐색한다.",
+  "entrypoint": "skills/national-assembly-search/README.md",
+  "outputs": [
+    "의안/회의록 후보",
+    "일자",
+    "진행상태",
+    "쟁점",
+    "답변 근거"
+  ],
+  "safety": [
+    "최신 상태 확인",
+    "대외 답변 전 사람 검토",
+    "출처 보존"
+  ],
+  "inspiredBy": [
+    {
+      "repo": "NomaDamas/k-skill",
+      "url": "https://github.com/NomaDamas/k-skill"
+    }
+  ]
+}

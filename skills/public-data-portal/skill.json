@@ -1,0 +1,34 @@
+{
+  "name": "public-data-portal",
+  "title": "공공데이터포털 API 준비/호출",
+  "category": "public-api",
+  "auth": "user-key-required",
+  "env": [
+    "DATA_GO_KR_SERVICE_KEY"
+  ],
+  "purpose": "공공데이터포털 API 후보, 활용신청, serviceKey, 파라미터, fallback을 정리한다.",
+  "entrypoint": "skills/public-data-portal/README.md",
+  "outputs": [
+    "API 후보",
+    "활용신청 필요 여부",
+    "환경변수",
+    "파라미터",
+    "fallback",
+    "출처/기준일"
+  ],
+  "safety": [
+    "사용자 직접 발급 key 사용",
+    "대량 호출 전 rate limit 확인",
+    "개인정보 최소 처리"
+  ],
+  "inspiredBy": [
+    {
+      "repo": "Koomook/data-go-mcp-servers",
+      "url": "https://github.com/Koomook/data-go-mcp-servers"
+    },
+    {
+      "repo": "NomaDamas/k-skill",
+      "url": "https://github.com/NomaDamas/k-skill"
+    }
+  ]
+}

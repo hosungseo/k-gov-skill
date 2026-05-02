@@ -1,0 +1,34 @@
+{
+  "name": "korean-law-search",
+  "title": "한국 법령 검색",
+  "category": "law",
+  "auth": "optional-user-key",
+  "env": [
+    "LAW_GO_KR_OC"
+  ],
+  "purpose": "법령/조문/행정규칙/판례·해석례 후보를 근거표로 정리한다.",
+  "entrypoint": "skills/korean-law-search/README.md",
+  "outputs": [
+    "법령명",
+    "조문번호",
+    "본문 발췌",
+    "원문 URL",
+    "인용 문안",
+    "불확실한 부분"
+  ],
+  "safety": [
+    "법률 자문처럼 단정하지 않음",
+    "현행 조문 본문 우선",
+    "시행일/개정연혁 분리 확인"
+  ],
+  "inspiredBy": [
+    {
+      "repo": "chrisryugj/korean-law-mcp",
+      "url": "https://github.com/chrisryugj/korean-law-mcp"
+    },
+    {
+      "repo": "legalize-kr/legalize-kr",
+      "url": "https://github.com/legalize-kr/legalize-kr"
+    }
+  ]
+}

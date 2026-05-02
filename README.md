@@ -131,6 +131,10 @@ Do not assume I already have a serviceKey.
 - 개인정보·민감정보·처분 판단은 자동화하지 않습니다.
 - 외부 발송/제출/삭제는 사람 승인 전제로 둡니다.
 
+## 참고한 GitHub stars
+
+기능 고도화 참고 목록은 [Starred Repos Inspiration](docs/starred-inspiration.md)에 정리했습니다. 특히 `k-skill`, `data-go-mcp-servers`, `korean-law-mcp`, `kordoc-ai`, `hwpx-skill`, `legalize-kr` 방향을 반영합니다.
+
 ## 품질 확인
 
 이 repo는 GitHub Actions에서 `npm run check`를 실행합니다. 로컬에서는 아래 명령으로 같은 검증을 할 수 있습니다.

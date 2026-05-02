@@ -1,0 +1,6 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "k-gov-skill manifest",
+  "type": "object",
+  "required": ["name", "title", "auth", "category", "purpose", "entrypoint", "outputs", "safety"]
+}
