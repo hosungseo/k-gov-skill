@@ -8,6 +8,15 @@
 - Skill API: https://kgov-ready-demo.vercel.app/api/skills
 - Asset catalog: https://kgov-ready-demo.vercel.app/api/repos
 
+Plaza의 featured repository 카드는 이제 단순 링크 묶음이 아니라 아래 진입점을 함께 노출합니다.
+
+- `6개 초기 skill`
+- `Runnable examples 포함`
+- `키 없을 때 fallback 안내`
+- `Try first` 실행 예시 3개
+- `skill-catalog.json`
+- `Getting started`
+
 `/api/skills`는 에이전트가 `k-gov-skill`을 발견하도록 아래 정보를 제공합니다.
 
 - repository URL
@@ -32,6 +41,7 @@ npm run example:org-quota
 npm run example:hwp
 npm run example:law
 npm run example:prepare-api
+npm run example:population-report
 ```
 
 ## Current public data API ids
@@ -45,3 +55,5 @@ npm run example:prepare-api
 ## Verification notes
 
 As of 2026-05-02, the live Skill API returned the public data API catalog URL, runnable examples, and `kosis-population` marker. The latest `k-gov-skill` GitHub Actions check was successful.
+
+On the same date, the live Plaza surface was re-checked and the featured `k-gov-skill` card exposed `Try first`, `skill-catalog.json`, `Getting started`, and the fallback-oriented badges on the rendered page, not just in source.
