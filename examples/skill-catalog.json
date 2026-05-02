@@ -1,0 +1,51 @@
+{
+  "count": 6,
+  "skills": [
+    {
+      "name": "hwp-document-tools",
+      "auth": "불필요.",
+      "env": [],
+      "purpose": "HWP/HWPX 문서를 Markdown/JSON으로 읽고, 표·항목·쟁점을 추출해 에이전트가 검토할 수 있게 만드는 스킬입니다."
+    },
+    {
+      "name": "korean-law-search",
+      "auth": "선택.",
+      "env": [
+        "LAW_GO_KR_OC"
+      ],
+      "purpose": "법령/조문/행정규칙/판례·해석례 후보를 찾아 공무원 업무 문서에 붙일 수 있는 근거표로 정리하는 스킬입니다."
+    },
+    {
+      "name": "national-assembly-search",
+      "auth": "필요/선택.",
+      "env": [
+        "ASSEMBLY_API_KEY"
+      ],
+      "purpose": "의안, 회의록, 국회 일정, 의원실 질의 대응 자료를 탐색하는 스킬입니다."
+    },
+    {
+      "name": "official-gazette-search",
+      "auth": "불필요.",
+      "env": [],
+      "purpose": "관보의 고시·공고·직제·입법예고·인사 관련 문서를 찾아 에이전트가 읽을 수 있는 근거 목록으로 정리하는 스킬입니다."
+    },
+    {
+      "name": "org-quota-review",
+      "auth": "선택.",
+      "env": [
+        "LAW_GO_KR_OC",
+        "ASSEMBLY_API_KEY",
+        "DATA_GO_KR_SERVICE_KEY"
+      ],
+      "purpose": "부처의 기구·정원 요구자료를 검토 가능한 업무 패킷으로 바꾸는 스킬입니다."
+    },
+    {
+      "name": "public-data-portal",
+      "auth": "필요/선택.",
+      "env": [
+        "DATA_GO_KR_SERVICE_KEY"
+      ],
+      "purpose": "공공데이터포털 API를 에이전트가 쓰기 쉽게 준비하는 스킬입니다."
+    }
+  ]
+}

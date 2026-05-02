@@ -1,0 +1,10 @@
+{
+  "name": "k-gov-skill-draft",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "example:public-data": "node scripts/public-data-first-call.mjs",
+    "check": "node scripts/public-data-first-call.mjs --topic population --dry-run"
+  }
+}
