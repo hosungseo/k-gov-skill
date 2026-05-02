@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "example:public-data": "node scripts/public-data-first-call.mjs",
-    "check": "node scripts/validate-skills.mjs && node scripts/validate-manifests.mjs && node scripts/public-data-first-call.mjs --topic population --dry-run && node scripts/gazette-jikje-watch.mjs > /tmp/gazette-jikje-watch.json && node scripts/org-quota-review-packet.mjs > /tmp/org-quota-review-packet.json && node scripts/hwp-document-packet.mjs > /tmp/hwp-document-packet.json && node scripts/list-public-data-apis.mjs > /tmp/public-data-apis.json && node scripts/korean-law-citation-packet.mjs > /tmp/korean-law-citation-packet.json",
+    "check": "node scripts/validate-skills.mjs && node scripts/validate-manifests.mjs && node scripts/public-data-first-call.mjs --topic population --dry-run && node scripts/gazette-jikje-watch.mjs > /tmp/gazette-jikje-watch.json && node scripts/org-quota-review-packet.mjs > /tmp/org-quota-review-packet.json && node scripts/hwp-document-packet.mjs > /tmp/hwp-document-packet.json && node scripts/list-public-data-apis.mjs > /tmp/public-data-apis.json && node scripts/korean-law-citation-packet.mjs > /tmp/korean-law-citation-packet.json && node scripts/prepare-public-data-call.mjs --api mois-resident-population > /tmp/prepare-public-data-call.json",
     "catalog": "node scripts/list-skills.mjs",
     "validate:skills": "node scripts/validate-skills.mjs",
     "example:gazette": "node scripts/gazette-jikje-watch.mjs",
@@ -13,6 +13,7 @@
     "example:hwp": "node scripts/hwp-document-packet.mjs",
     "validate:manifests": "node scripts/validate-manifests.mjs",
     "catalog:public-data": "node scripts/list-public-data-apis.mjs",
-    "example:law": "node scripts/korean-law-citation-packet.mjs"
+    "example:law": "node scripts/korean-law-citation-packet.mjs",
+    "example:prepare-api": "node scripts/prepare-public-data-call.mjs --api mois-resident-population"
   }
 }
