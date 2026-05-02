@@ -7,6 +7,14 @@
 
 처음 대상은 모든 공무원이 아닙니다. GitHub, API key, 에이전트 도구에 관심 있는 소수의 바이브코딩 공무원을 위한 출발점입니다. 이들이 먼저 써보고, 고치고, 자기 업무에 맞게 확장할 수 있는 환경을 목표로 합니다.
 
+## 환경광장과 연결
+
+`k-gov-skill`은 독립 스킬 저장소이지만, 전시와 탐색은 [K-Gov Agent Plaza](https://kgov-ready-demo.vercel.app/plaza)에서 볼 수 있습니다.
+
+- Plaza featured card: https://kgov-ready-demo.vercel.app/plaza
+- Skill API: https://kgov-ready-demo.vercel.app/api/skills
+- Asset catalog: https://kgov-ready-demo.vercel.app/api/repos
+
 ## 에이전트 진입점
 
 - [`llms.txt`](llms.txt) — 에이전트가 먼저 읽는 요약
