@@ -149,6 +149,11 @@ npm run --silent catalog > examples/skill-catalog.json
 
 릴리스 전에는 [release checklist](docs/release-checklist.md)를 확인합니다.
 
+## 프로젝트 상태
+
+- [Status](STATUS.md)
+- [Roadmap](ROADMAP.md)
+
 ## 상태
 
 초기 draft입니다. 지금은 문서와 첫 runnable example을 중심으로 구성되어 있으며, 공개 repo 생성 전 로컬에서 구조를 다듬는 단계입니다.
