@@ -13,6 +13,7 @@ This repository helps AI coding/agent tools use Korean public-sector workflows: 
 - docs/auth-model.md — API key and login model
 - examples/skill-catalog.json — machine-readable skill catalog
 - examples/index.json — machine-readable runnable examples index
+- examples/agent-pack.json — combined agent-facing bundle of skills, examples, public data APIs, rules
 - skills/public-data-portal/README.md — first runnable public data skill
 
 ## Core commands

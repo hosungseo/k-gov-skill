@@ -1,0 +1,411 @@
+{
+  "name": "k-gov-skill agent pack",
+  "repository": "https://github.com/hosungseo/k-gov-skill",
+  "language": "ko",
+  "purpose": "한국 공무원 행정업무를 AI 에이전트가 스킬·레시피·API manifest 기반으로 처리하도록 돕는 agent-facing bundle",
+  "entrypoints": {
+    "human": "README.md",
+    "llm": "llms.txt",
+    "auth": "docs/auth-model.md",
+    "prompts": "docs/prompt-pack.md",
+    "status": "STATUS.md",
+    "roadmap": "ROADMAP.md"
+  },
+  "rules": [
+    "공공 API key가 필요하면 사용자가 직접 신청한다.",
+    "키가 없으면 실패 대신 신청 안내와 fallback을 제공한다.",
+    "공식 출처·기준일·원문 URL을 보존한다.",
+    "개인정보·민감정보·처분 판단·외부 발송은 사람 검토를 요구한다.",
+    "비공개 HWP/HWPX 문서는 외부 업로드 없이 로컬 처리한다."
+  ],
+  "skills": [
+    {
+      "name": "hwp-document-tools",
+      "title": "HWP/HWPX 문서 처리",
+      "category": "document",
+      "auth": "none",
+      "env": [],
+      "purpose": "HWP/HWPX 문서를 로컬에서 읽고 표·항목·쟁점을 추출한다.",
+      "entrypoint": "skills/hwp-document-tools/README.md",
+      "outputs": [
+        "Markdown 변환본",
+        "표 목록",
+        "요구사항",
+        "쟁점표",
+        "보완요청",
+        "원문 대조 필요 지점"
+      ],
+      "safety": [
+        "비공개 문서 외부 업로드 금지",
+        "변환본은 원문 대체 불가",
+        "중요 표 원문 대조"
+      ],
+      "inspiredBy": [
+        {
+          "repo": "chrisryugj/kordoc-ai",
+          "url": "https://github.com/chrisryugj/kordoc-ai"
+        },
+        {
+          "repo": "jkf87/hwpx-skill",
+          "url": "https://github.com/jkf87/hwpx-skill"
+        },
+        {
+          "repo": "edwardkim/rhwp",
+          "url": "https://github.com/edwardkim/rhwp"
+        }
+      ]
+    },
+    {
+      "name": "korean-law-search",
+      "title": "한국 법령 검색",
+      "category": "law",
+      "auth": "optional-user-key",
+      "env": [
+        "LAW_GO_KR_OC"
+      ],
+      "purpose": "법령/조문/행정규칙/판례·해석례 후보를 근거표로 정리한다.",
+      "entrypoint": "skills/korean-law-search/README.md",
+      "outputs": [
+        "법령명",
+        "조문번호",
+        "본문 발췌",
+        "원문 URL",
+        "인용 문안",
+        "불확실한 부분"
+      ],
+      "safety": [
+        "법률 자문처럼 단정하지 않음",
+        "현행 조문 본문 우선",
+        "시행일/개정연혁 분리 확인"
+      ],
+      "inspiredBy": [
+        {
+          "repo": "chrisryugj/korean-law-mcp",
+          "url": "https://github.com/chrisryugj/korean-law-mcp"
+        },
+        {
+          "repo": "legalize-kr/legalize-kr",
+          "url": "https://github.com/legalize-kr/legalize-kr"
+        }
+      ]
+    },
+    {
+      "name": "national-assembly-search",
+      "title": "국회자료 검색",
+      "category": "assembly",
+      "auth": "optional-user-key",
+      "env": [
+        "ASSEMBLY_API_KEY"
+      ],
+      "purpose": "의안, 회의록, 일정, 질의 대응 자료를 탐색한다.",
+      "entrypoint": "skills/national-assembly-search/README.md",
+      "outputs": [
+        "의안/회의록 후보",
+        "일자",
+        "진행상태",
+        "쟁점",
+        "답변 근거"
+      ],
+      "safety": [
+        "최신 상태 확인",
+        "대외 답변 전 사람 검토",
+        "출처 보존"
+      ],
+      "inspiredBy": [
+        {
+          "repo": "NomaDamas/k-skill",
+          "url": "https://github.com/NomaDamas/k-skill"
+        }
+      ]
+    },
+    {
+      "name": "official-gazette-search",
+      "title": "관보 검색",
+      "category": "gazette",
+      "auth": "none",
+      "env": [],
+      "purpose": "관보 고시·공고·직제·입법예고 문서를 찾아 근거 목록으로 정리한다.",
+      "entrypoint": "skills/official-gazette-search/README.md",
+      "outputs": [
+        "문서명",
+        "게재일",
+        "기관명",
+        "문서유형",
+        "원문/readable 링크",
+        "검토 쟁점"
+      ],
+      "safety": [
+        "중요 인용은 PDF 원문 대조",
+        "게재일/문서번호 보존",
+        "추출 오류 표시"
+      ],
+      "inspiredBy": [
+        {
+          "repo": "opendataloader-project/opendataloader-pdf",
+          "url": "https://github.com/opendataloader-project/opendataloader-pdf"
+        }
+      ]
+    },
+    {
+      "name": "org-quota-review",
+      "title": "직제·정원 검토 패킷",
+      "category": "workflow-packet",
+      "auth": "mixed",
+      "env": [
+        "LAW_GO_KR_OC",
+        "ASSEMBLY_API_KEY",
+        "DATA_GO_KR_SERVICE_KEY"
+      ],
+      "purpose": "기구·정원 요구자료를 검토 가능한 업무 패킷으로 나눈다.",
+      "entrypoint": "skills/org-quota-review/README.md",
+      "outputs": [
+        "요청 요약",
+        "근거 계획",
+        "쟁점표",
+        "보완요구",
+        "반대검토",
+        "검토의견 초안"
+      ],
+      "safety": [
+        "최종 판단은 사람 검토",
+        "비공개 자료 외부 업로드 금지",
+        "숫자/법령 출처 표시"
+      ],
+      "inspiredBy": [
+        {
+          "repo": "Q00/ouroboros",
+          "url": "https://github.com/Q00/ouroboros"
+        }
+      ]
+    },
+    {
+      "name": "public-data-portal",
+      "title": "공공데이터포털 API 준비/호출",
+      "category": "public-api",
+      "auth": "user-key-required",
+      "env": [
+        "DATA_GO_KR_SERVICE_KEY"
+      ],
+      "purpose": "공공데이터포털 API 후보, 활용신청, serviceKey, 파라미터, fallback을 정리한다.",
+      "entrypoint": "skills/public-data-portal/README.md",
+      "outputs": [
+        "API 후보",
+        "활용신청 필요 여부",
+        "환경변수",
+        "파라미터",
+        "fallback",
+        "출처/기준일"
+      ],
+      "safety": [
+        "사용자 직접 발급 key 사용",
+        "대량 호출 전 rate limit 확인",
+        "개인정보 최소 처리"
+      ],
+      "inspiredBy": [
+        {
+          "repo": "Koomook/data-go-mcp-servers",
+          "url": "https://github.com/Koomook/data-go-mcp-servers"
+        },
+        {
+          "repo": "NomaDamas/k-skill",
+          "url": "https://github.com/NomaDamas/k-skill"
+        }
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "id": "bill-response-draft",
+      "title": "bill-response-draft",
+      "readme": "examples/bill-response-draft/README.md",
+      "command": null,
+      "purpose": ""
+    },
+    {
+      "id": "gazette-jikje-watch",
+      "title": "예제: 관보 직제·정원 Watch",
+      "readme": "examples/gazette-jikje-watch/README.md",
+      "command": "npm run example:gazette",
+      "purpose": "관보 검색은 공공데이터포털 serviceKey 없이도 공개 코퍼스 기반으로 시작할 수 있습니다."
+    },
+    {
+      "id": "hwp-document-packet",
+      "title": "예제: HWP/HWPX 문서 검토 패킷",
+      "readme": "examples/hwp-document-packet/README.md",
+      "command": "npm run example:hwp",
+      "purpose": "공무원 업무에서 HWP/HWPX는 가장 자주 만나는 병목입니다. 이 예제는 파일을 바로 외부에 올리지 않고, 로컬 처리 원칙과 추출 계획을 먼저 패킷화합니다."
+    },
+    {
+      "id": "korean-law-citation-packet",
+      "title": "예제: 법령 인용 검증 패킷",
+      "readme": "examples/korean-law-citation-packet/README.md",
+      "command": "npm run example:law",
+      "purpose": "법령 검색 결과를 그냥 요약하지 않고, 업무 문서에 붙일 수 있는 citation packet으로 정리합니다."
+    },
+    {
+      "id": "org-quota-review-packet",
+      "title": "예제: 직제·정원 검토 패킷",
+      "readme": "examples/org-quota-review-packet/README.md",
+      "command": "npm run example:org-quota",
+      "purpose": "기구·정원 요구자료를 바로 결론내리지 않고, 검토 가능한 업무 패킷으로 나눕니다."
+    },
+    {
+      "id": "prepare-public-data-call",
+      "title": "예제: API manifest에서 호출 준비하기",
+      "readme": "examples/prepare-public-data-call/README.md",
+      "command": "npm run example:prepare-api",
+      "purpose": "`skills/public-data-portal/apis/*.json`에 있는 manifest를 읽어서 호출 준비 패킷을 만듭니다."
+    },
+    {
+      "id": "public-data-first-call",
+      "title": "예제: 공공데이터포털 API 첫 호출",
+      "readme": "examples/public-data-first-call/README.md",
+      "command": "npm run example:public-data",
+      "purpose": "이 예제는 공공데이터포털 API를 처음 붙일 때의 기본 동작을 보여줍니다."
+    }
+  ],
+  "publicDataApis": [
+    {
+      "id": "molit-apartment-trade",
+      "title": "국토교통부 아파트 매매 실거래자료",
+      "provider": "국토교통부",
+      "auth": "user-key-required",
+      "env": "DATA_GO_KR_SERVICE_KEY",
+      "portalSearch": "https://www.data.go.kr/tcs/dss/selectDataSetList.do?keyword=아파트%20매매%20실거래",
+      "endpoint": "https://apis.data.go.kr/1613000/RTMSDataSvcAptTrade/getRTMSDataSvcAptTrade",
+      "method": "GET",
+      "defaultParams": {
+        "serviceKey": "${DATA_GO_KR_SERVICE_KEY}",
+        "LAWD_CD": "11110",
+        "DEAL_YMD": "202501",
+        "pageNo": "1",
+        "numOfRows": "10"
+      },
+      "outputs": [
+        "단지명",
+        "거래금액",
+        "전용면적",
+        "계약년월",
+        "법정동"
+      ],
+      "fallback": "serviceKey가 없으면 활용신청, 법정동코드, 거래월 준비 방법을 안내한다.",
+      "safety": [
+        "원자료 기준월 표시",
+        "주소/거래정보 해석 주의",
+        "정책 판단 전 추가 검증"
+      ]
+    },
+    {
+      "id": "ecos-interest-rate",
+      "title": "한국은행 ECOS 기준금리/시장금리",
+      "provider": "한국은행",
+      "auth": "user-key-required",
+      "env": "ECOS_API_KEY",
+      "portalSearch": "https://ecos.bok.or.kr/api/",
+      "endpoint": "https://ecos.bok.or.kr/api/StatisticSearch/${ECOS_API_KEY}/json/kr/1/10/722Y001/D/20250101/20251231/0101000",
+      "method": "GET",
+      "defaultParams": {},
+      "outputs": [
+        "통계표",
+        "시점",
+        "값",
+        "단위"
+      ],
+      "fallback": "ECOS API key가 없으면 통계표 코드와 호출 URL 형식을 안내한다.",
+      "safety": [
+        "통계표 코드와 주기 확인",
+        "단위/시점 표시",
+        "정책 해석 전 원자료 확인"
+      ]
+    },
+    {
+      "id": "kosis-population",
+      "title": "KOSIS 인구·사회 통계",
+      "provider": "통계청/KOSIS",
+      "auth": "user-key-required",
+      "env": "KOSIS_API_KEY",
+      "portalSearch": "https://kosis.kr/openapi/",
+      "endpoint": "https://kosis.kr/openapi/Param/statisticsParameterData.do",
+      "method": "GET",
+      "defaultParams": {
+        "method": "getList",
+        "apiKey": "${KOSIS_API_KEY}",
+        "format": "json",
+        "jsonVD": "Y"
+      },
+      "outputs": [
+        "통계표",
+        "분류",
+        "시점",
+        "값",
+        "단위"
+      ],
+      "fallback": "KOSIS key와 통계표 ID가 없으면 신청/탐색 방법을 안내하고 후보 통계표를 정리한다.",
+      "safety": [
+        "통계표 ID/분류코드 확인",
+        "시점과 단위 표시",
+        "비교 시 정의 차이 확인"
+      ]
+    },
+    {
+      "id": "mois-resident-population",
+      "title": "행정안전부 주민등록 인구현황",
+      "provider": "행정안전부",
+      "auth": "user-key-required",
+      "env": "DATA_GO_KR_SERVICE_KEY",
+      "portalSearch": "https://www.data.go.kr/tcs/dss/selectDataSetList.do?keyword=주민등록%20인구",
+      "endpoint": "https://apis.data.go.kr/1741000/admmPpltnStatsService/getAdmmPpltnStats",
+      "method": "GET",
+      "defaultParams": {
+        "serviceKey": "${DATA_GO_KR_SERVICE_KEY}",
+        "pageNo": "1",
+        "numOfRows": "10",
+        "type": "json"
+      },
+      "outputs": [
+        "행정구역",
+        "인구수",
+        "세대수",
+        "기준시점"
+      ],
+      "fallback": "serviceKey가 없으면 활용신청 경로와 파라미터 예시를 안내한다.",
+      "safety": [
+        "집계값 중심으로 사용",
+        "기준일 표시",
+        "대량 호출 전 이용조건 확인"
+      ]
+    },
+    {
+      "id": "neis-school-lunch",
+      "title": "NEIS 학교 급식 식단 정보",
+      "provider": "교육부/한국교육학술정보원",
+      "auth": "user-key-required",
+      "env": "DATA_GO_KR_SERVICE_KEY",
+      "portalSearch": "https://www.data.go.kr/tcs/dss/selectDataSetList.do?keyword=NEIS%20급식%20식단",
+      "endpoint": "https://open.neis.go.kr/hub/mealServiceDietInfo",
+      "method": "GET",
+      "defaultParams": {
+        "KEY": "${DATA_GO_KR_SERVICE_KEY}",
+        "Type": "json",
+        "pIndex": "1",
+        "pSize": "10",
+        "ATPT_OFCDC_SC_CODE": "B10",
+        "SD_SCHUL_CODE": "7010536",
+        "MLSV_YMD": "20260502"
+      },
+      "outputs": [
+        "학교명",
+        "급식일자",
+        "식단",
+        "원산지/영양정보 후보"
+      ],
+      "fallback": "교육청 코드와 학교 코드를 먼저 확인하고, 키가 없으면 신청 방법과 샘플 파라미터를 안내한다.",
+      "safety": [
+        "학교코드/교육청코드 확인",
+        "급식일자 기준 표시",
+        "알레르기 정보는 원문 확인"
+      ]
+    }
+  ],
+  "generatedAt": "2026-05-02T11:10:37.136Z"
+}
