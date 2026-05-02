@@ -1,0 +1,29 @@
+# k-gov-skill
+
+한국 공무원을 위한 행정업무 AI 스킬 모음집입니다.
+
+## Purpose
+
+This repository helps AI coding/agent tools use Korean public-sector workflows: public data portal APIs, Korean law search, official gazette search, National Assembly materials, HWP/HWPX document handling, and organization/quota review packets.
+
+## Start here
+
+- README.md — human overview
+- docs/getting-started.md — first run guide
+- docs/auth-model.md — API key and login model
+- examples/skill-catalog.json — machine-readable skill catalog
+- skills/public-data-portal/README.md — first runnable public data skill
+
+## Core commands
+
+```bash
+npm run example:public-data
+node scripts/list-skills.mjs
+npm run check
+```
+
+## Safety
+
+Do not assume public API keys are bundled. For data.go.kr and similar APIs, users usually need to apply for their own key. If a key is missing, guide the user to the application path and provide sample/fallback output.
+
+Do not upload private government documents to external services. Preserve official source, date, and institution in outputs.

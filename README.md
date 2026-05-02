@@ -7,6 +7,12 @@
 
 처음 대상은 모든 공무원이 아닙니다. GitHub, API key, 에이전트 도구에 관심 있는 소수의 바이브코딩 공무원을 위한 출발점입니다. 이들이 먼저 써보고, 고치고, 자기 업무에 맞게 확장할 수 있는 환경을 목표로 합니다.
 
+## 에이전트 진입점
+
+- [`llms.txt`](llms.txt) — 에이전트가 먼저 읽는 요약
+- [`examples/skill-catalog.json`](examples/skill-catalog.json) — 기계가 읽는 스킬 카탈로그
+- [`.well-known-agent.json`](.well-known-agent.json) — agent-facing manifest 초안
+
 ## 30초 안에 감 잡기
 
 키 없이도 먼저 실행해볼 수 있습니다.

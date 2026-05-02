@@ -1,0 +1,19 @@
+{
+  "name": "k-gov-skill",
+  "description": "한국 공무원을 위한 행정업무 AI 스킬 모음집",
+  "language": "ko",
+  "repository": "https://github.com/hosungseo/k-gov-skill",
+  "entrypoints": {
+    "human": "README.md",
+    "llm": "llms.txt",
+    "skillCatalog": "examples/skill-catalog.json",
+    "authModel": "docs/auth-model.md",
+    "firstRun": "docs/getting-started.md"
+  },
+  "principles": [
+    "source-first",
+    "permission-aware",
+    "user-key-required-when-needed",
+    "human-review-on-risk"
+  ]
+}
