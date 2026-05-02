@@ -117,6 +117,17 @@ Do not assume I already have a serviceKey.
 - 개인정보·민감정보·처분 판단은 자동화하지 않습니다.
 - 외부 발송/제출/삭제는 사람 승인 전제로 둡니다.
 
+## 품질 확인
+
+이 repo는 GitHub Actions에서 `npm run check`를 실행합니다. 로컬에서는 아래 명령으로 같은 검증을 할 수 있습니다.
+
+```bash
+npm run check
+npm run catalog > examples/skill-catalog.json
+```
+
+릴리스 전에는 [release checklist](docs/release-checklist.md)를 확인합니다.
+
 ## 상태
 
 초기 draft입니다. 지금은 문서와 첫 runnable example을 중심으로 구성되어 있으며, 공개 repo 생성 전 로컬에서 구조를 다듬는 단계입니다.

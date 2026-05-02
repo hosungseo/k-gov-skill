@@ -1,3 +1,7 @@
+
+> k-gov-skill-draft@0.1.0 catalog
+> node scripts/list-skills.mjs
+
 {
   "count": 6,
   "skills": [
