@@ -41,6 +41,7 @@ npm run example:law
 node scripts/list-skills.mjs
 npm run catalog:public-data
 npm run example:prepare-api
+npm run example:population-report
 ```
 
 처음이라면 [시작하기](docs/getting-started.md)를 먼저 보세요.
@@ -88,6 +89,7 @@ Do not assume I already have a serviceKey.
 - [HWP/HWPX 문서 검토 패킷 예제](examples/hwp-document-packet/README.md)
 - [법령 인용 검증 패킷 예제](examples/korean-law-citation-packet/README.md)
 - [API manifest 호출 준비 예제](examples/prepare-public-data-call/README.md)
+- [주민등록 인구 업무보고 패킷 예제](examples/population-report-packet/README.md)
 - [관보에서 직제·정원 관련 고시 찾기](recipes/gazette-jikje-watch.md)
 - [부처별 보도자료 브리핑](recipes/ministry-press-briefing.md)
 

@@ -1,5 +1,5 @@
 {
-  "count": 7,
+  "count": 8,
   "examples": [
     {
       "id": "bill-response-draft",
@@ -35,6 +35,13 @@
       "readme": "examples/org-quota-review-packet/README.md",
       "command": "npm run example:org-quota",
       "purpose": "기구·정원 요구자료를 바로 결론내리지 않고, 검토 가능한 업무 패킷으로 나눕니다."
+    },
+    {
+      "id": "population-report-packet",
+      "title": "예제: 주민등록 인구 업무보고 패킷",
+      "readme": "examples/population-report-packet/README.md",
+      "command": "npm run example:population-report",
+      "purpose": "`public-data-portal`의 행안부 주민등록 인구 API manifest를 이용해 업무보고용 패킷을 만듭니다."
     },
     {
       "id": "prepare-public-data-call",
