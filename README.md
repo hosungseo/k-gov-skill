@@ -123,7 +123,7 @@ Do not assume I already have a serviceKey.
 
 ```bash
 npm run check
-npm run catalog > examples/skill-catalog.json
+npm run --silent catalog > examples/skill-catalog.json
 ```
 
 릴리스 전에는 [release checklist](docs/release-checklist.md)를 확인합니다.

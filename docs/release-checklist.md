@@ -6,7 +6,7 @@
 
 ```bash
 npm run check
-npm run catalog > examples/skill-catalog.json
+npm run --silent catalog > examples/skill-catalog.json
 ```
 
 ## Skill quality
