@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Korean law citation packet",
+  "type": "object",
+  "required": ["lawName", "article", "quote", "source", "checkedAt", "confidence"],
+  "properties": {
+    "lawName": { "type": "string", "description": "법령명" },
+    "lawId": { "type": "string", "description": "법령ID 또는 MST 등 식별자" },
+    "article": { "type": "string", "description": "조문번호" },
+    "articleTitle": { "type": "string", "description": "조문 제목" },
+    "quote": { "type": "string", "description": "원문 인용 발췌" },
+    "effectiveDate": { "type": "string", "description": "시행일" },
+    "source": { "type": "string", "description": "원문 URL 또는 API 호출 경로" },
+    "checkedAt": { "type": "string", "description": "확인 시각/날짜" },
+    "confidence": { "type": "string", "enum": ["high", "medium", "low"] },
+    "needsHumanReview": { "type": "boolean" },
+    "notes": { "type": "array", "items": { "type": "string" } }
+  }
+}

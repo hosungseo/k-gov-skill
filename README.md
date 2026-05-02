@@ -30,6 +30,7 @@ npm run example:public-data
 npm run example:gazette
 npm run example:org-quota
 npm run example:hwp
+npm run example:law
 ```
 
 공공데이터포털 `serviceKey`가 없으면 에러를 내는 대신, 어떤 API를 신청해야 하는지, 어떤 환경변수를 넣어야 하는지, 어떤 파라미터가 필요한지 JSON으로 안내합니다.
@@ -84,6 +85,7 @@ Do not assume I already have a serviceKey.
 - [관보 직제·정원 Watch 예제](examples/gazette-jikje-watch/README.md)
 - [직제·정원 검토 패킷 예제](examples/org-quota-review-packet/README.md)
 - [HWP/HWPX 문서 검토 패킷 예제](examples/hwp-document-packet/README.md)
+- [법령 인용 검증 패킷 예제](examples/korean-law-citation-packet/README.md)
 - [관보에서 직제·정원 관련 고시 찾기](recipes/gazette-jikje-watch.md)
 - [부처별 보도자료 브리핑](recipes/ministry-press-briefing.md)
 

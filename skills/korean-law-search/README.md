@@ -49,3 +49,18 @@ LAW_GO_KR_OC="..." # 선택
 - 법률 자문처럼 단정하지 않습니다.
 - 가능하면 현행 조문 본문을 우선합니다.
 - 부칙, 개정연혁, 시행일은 별도 확인 항목으로 분리합니다.
+
+## citation packet
+
+법령 인용은 `skills/korean-law-search/schemas/citation.schema.json` 형식으로 남깁니다.
+
+```bash
+npm run example:law
+```
+
+원칙:
+
+- 요약보다 원문 조문 발췌 우선
+- 시행일과 현행 여부 확인
+- 원문 URL/API 경로 기록
+- 사람 검토 필요 여부 표시
