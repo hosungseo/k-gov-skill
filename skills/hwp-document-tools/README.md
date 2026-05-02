@@ -1,5 +1,7 @@
 # hwp-document-tools
 
+## 목적
+
 HWP/HWPX 문서를 Markdown/JSON으로 읽고, 표·항목·쟁점을 추출해 에이전트가 검토할 수 있게 만드는 스킬입니다.
 
 ## 사용자 신청/로그인

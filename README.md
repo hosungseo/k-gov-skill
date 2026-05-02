@@ -104,6 +104,12 @@ Do not assume I already have a serviceKey.
 - [`ai-readable-gazette-kr`](https://github.com/hosungseo/ai-readable-gazette-kr) — 관보 Markdown 코퍼스
 - [`agent-ready-check`](https://github.com/hosungseo/agent-ready-check) — agent-ready 스캐너
 
+## 기여하기
+
+- [스킬 작성 가이드](docs/skill-author-guide.md)
+- [Contributing](CONTRIBUTING.md)
+- 새 스킬 제안은 GitHub Issue의 `새 행정업무 스킬 제안` 템플릿을 사용하면 됩니다.
+
 ## 안전 원칙
 
 - 공식 출처와 기준일을 남깁니다.

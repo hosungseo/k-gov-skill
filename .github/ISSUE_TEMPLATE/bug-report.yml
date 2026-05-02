@@ -1,0 +1,20 @@
+name: 오류 제보
+description: 스크립트, 문서, 레시피 오류를 제보합니다.
+title: "[Bug] "
+labels: [bug]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: 무엇이 잘못됐나요?
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: 재현 방법
+      placeholder: 실행한 명령, 입력값, 오류 메시지
+  - type: textarea
+    id: expected
+    attributes:
+      label: 기대한 동작
