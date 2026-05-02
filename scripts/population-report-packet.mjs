@@ -11,6 +11,7 @@ const has = (name) => args.includes(`--${name}`);
 
 const region = getArg("region", "전국");
 const period = getArg("period", "최근 12개월");
+const numOfRows = getArg("numOfRows", "100");
 const format = getArg("format", "markdown");
 const live = has("live");
 const apiId = "mois-resident-population";
@@ -23,12 +24,13 @@ const sampleRows = [
   { period: "2025-12", region, population: 51218000, households: 24210000, note: "sample" }
 ];
 
-function makeUrl() {
+function makeUrl({ maskKey = false } = {}) {
   const url = new URL(manifest.endpoint);
   for (const [k, v] of Object.entries(manifest.defaultParams || {})) {
     url.searchParams.set(k, String(v).replace(`\${${manifest.env}}`, key || `\${${manifest.env}}`));
   }
-  return url.toString();
+  url.searchParams.set("numOfRows", numOfRows);
+  return maskKey ? url.toString().replace(key, `\${${manifest.env}}`) : url.toString();
 }
 
 function packet(rows, sourceStatus) {
@@ -44,10 +46,10 @@ function packet(rows, sourceStatus) {
       title: manifest.title,
       auth: manifest.auth,
       requiredEnv: manifest.env,
-      requestUrl: makeUrl().replace(key, `\${${manifest.env}}`),
+      requestUrl: makeUrl({ maskKey: true }),
       liveRequested: live
     },
-    query: { region, period },
+    query: { region, period, numOfRows },
     summary: {
       headline: `${region} 주민등록 인구는 샘플 기준 ${first.period} ${first.population.toLocaleString()}명에서 ${last.period} ${last.population.toLocaleString()}명으로 ${delta.toLocaleString()}명 변동했습니다.`,
       populationDelta: delta,
@@ -70,6 +72,39 @@ function packet(rows, sourceStatus) {
   };
 }
 
+function normalizePopulationRows(payload) {
+  const raw = payload?.admmPpltnStats || payload?.response?.body?.items?.item || payload?.items || [];
+  const items = Array.isArray(raw) ? raw : [raw].filter(Boolean);
+  return items.map((item) => {
+    const name = item.ctpvNm || item.sidoNm || item.admmNm || item.region || item.행정구역 || item.name || region;
+    const periodValue = item.statsYm || item.baseYm || item.crtrYm || item.기준연월 || item.period || "unknown";
+    const populationValue = item.totNmpr || item.population || item.인구수 || item.totPopltn || item.populationCount || 0;
+    const householdValue = item.hhCnt || item.households || item.세대수 || item.householdCount || 0;
+    return {
+      period: String(periodValue),
+      region: String(name),
+      population: Number(String(populationValue).replace(/,/g, "")) || 0,
+      households: Number(String(householdValue).replace(/,/g, "")) || 0,
+      note: "live"
+    };
+  }).filter((row) => row.population > 0);
+}
+
+async function fetchLiveRows() {
+  const response = await fetch(makeUrl(), { headers: { "user-agent": "k-gov-skill/0.1" } });
+  const text = await response.text();
+  if (!response.ok) throw new Error(`HTTP ${response.status}: ${text.slice(0, 200)}`);
+  let payload;
+  try {
+    payload = JSON.parse(text);
+  } catch {
+    throw new Error(`Expected JSON response but got: ${text.slice(0, 200)}`);
+  }
+  const rows = normalizePopulationRows(payload);
+  if (!rows.length) throw new Error("Live response parsed, but no population rows were found. Check API schema/params.");
+  return rows;
+}
+
 function toMarkdown(rows, delta) {
   const first = rows[0];
   const last = rows[rows.length - 1];
@@ -89,7 +124,17 @@ if (live && !key) {
   process.exit(0);
 }
 
-// For now, live mode still emits the packet shape with sample rows; actual parsing can be connected to korean-government-api-bundle next.
-const result = packet(sampleRows, live ? "live-adapter-pending" : "sample-fallback");
+let rows = sampleRows;
+let status = "sample-fallback";
+if (live) {
+  try {
+    rows = await fetchLiveRows();
+    status = "live";
+  } catch (error) {
+    console.error(JSON.stringify({ status: "live-fetch-failed", message: error.message, fallback: "sample packet emitted" }, null, 2));
+    status = "live-fetch-failed-sample-fallback";
+  }
+}
+const result = packet(rows, status);
 if (format === "md" || format === "markdown") console.log(result.markdown);
 else console.log(JSON.stringify(result, null, 2));

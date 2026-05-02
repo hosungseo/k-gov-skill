@@ -32,7 +32,8 @@ function inferCommand(dir, scripts) {
     "org-quota-review-packet": "example:org-quota",
     "hwp-document-packet": "example:hwp",
     "korean-law-citation-packet": "example:law",
-    "prepare-public-data-call": "example:prepare-api"
+    "prepare-public-data-call": "example:prepare-api",
+    "population-report-packet": "example:population-report"
   };
   return map[dir] && scripts[map[dir]] ? `npm run ${map[dir]}` : null;
 }
