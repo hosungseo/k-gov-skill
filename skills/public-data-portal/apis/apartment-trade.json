@@ -1,0 +1,20 @@
+{
+  "id": "molit-apartment-trade",
+  "title": "국토교통부 아파트 매매 실거래자료",
+  "provider": "국토교통부",
+  "auth": "user-key-required",
+  "env": "DATA_GO_KR_SERVICE_KEY",
+  "portalSearch": "https://www.data.go.kr/tcs/dss/selectDataSetList.do?keyword=아파트%20매매%20실거래",
+  "endpoint": "https://apis.data.go.kr/1613000/RTMSDataSvcAptTrade/getRTMSDataSvcAptTrade",
+  "method": "GET",
+  "defaultParams": {
+    "serviceKey": "${DATA_GO_KR_SERVICE_KEY}",
+    "LAWD_CD": "11110",
+    "DEAL_YMD": "202501",
+    "pageNo": "1",
+    "numOfRows": "10"
+  },
+  "outputs": ["단지명", "거래금액", "전용면적", "계약년월", "법정동"],
+  "fallback": "serviceKey가 없으면 활용신청, 법정동코드, 거래월 준비 방법을 안내한다.",
+  "safety": ["원자료 기준월 표시", "주소/거래정보 해석 주의", "정책 판단 전 추가 검증"]
+}

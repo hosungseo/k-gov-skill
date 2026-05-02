@@ -1,0 +1,63 @@
+{
+  "count": 2,
+  "apis": [
+    {
+      "id": "molit-apartment-trade",
+      "title": "국토교통부 아파트 매매 실거래자료",
+      "provider": "국토교통부",
+      "auth": "user-key-required",
+      "env": "DATA_GO_KR_SERVICE_KEY",
+      "portalSearch": "https://www.data.go.kr/tcs/dss/selectDataSetList.do?keyword=아파트%20매매%20실거래",
+      "endpoint": "https://apis.data.go.kr/1613000/RTMSDataSvcAptTrade/getRTMSDataSvcAptTrade",
+      "method": "GET",
+      "defaultParams": {
+        "serviceKey": "${DATA_GO_KR_SERVICE_KEY}",
+        "LAWD_CD": "11110",
+        "DEAL_YMD": "202501",
+        "pageNo": "1",
+        "numOfRows": "10"
+      },
+      "outputs": [
+        "단지명",
+        "거래금액",
+        "전용면적",
+        "계약년월",
+        "법정동"
+      ],
+      "fallback": "serviceKey가 없으면 활용신청, 법정동코드, 거래월 준비 방법을 안내한다.",
+      "safety": [
+        "원자료 기준월 표시",
+        "주소/거래정보 해석 주의",
+        "정책 판단 전 추가 검증"
+      ]
+    },
+    {
+      "id": "mois-resident-population",
+      "title": "행정안전부 주민등록 인구현황",
+      "provider": "행정안전부",
+      "auth": "user-key-required",
+      "env": "DATA_GO_KR_SERVICE_KEY",
+      "portalSearch": "https://www.data.go.kr/tcs/dss/selectDataSetList.do?keyword=주민등록%20인구",
+      "endpoint": "https://apis.data.go.kr/1741000/admmPpltnStatsService/getAdmmPpltnStats",
+      "method": "GET",
+      "defaultParams": {
+        "serviceKey": "${DATA_GO_KR_SERVICE_KEY}",
+        "pageNo": "1",
+        "numOfRows": "10",
+        "type": "json"
+      },
+      "outputs": [
+        "행정구역",
+        "인구수",
+        "세대수",
+        "기준시점"
+      ],
+      "fallback": "serviceKey가 없으면 활용신청 경로와 파라미터 예시를 안내한다.",
+      "safety": [
+        "집계값 중심으로 사용",
+        "기준일 표시",
+        "대량 호출 전 이용조건 확인"
+      ]
+    }
+  ]
+}

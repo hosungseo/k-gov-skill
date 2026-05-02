@@ -50,3 +50,18 @@ DATA_GO_KR_SERVICE_KEY="..."
 - 개인정보가 포함될 수 있는 API는 집계값 중심으로 사용합니다.
 - 응답에는 기준일과 제공기관을 반드시 남깁니다.
 - 대량 호출은 rate limit과 이용약관을 확인합니다.
+
+## API manifest
+
+초기 API 후보는 `skills/public-data-portal/apis/` 아래 JSON manifest로 관리합니다.
+
+```bash
+npm run catalog:public-data
+```
+
+현재 포함된 샘플:
+
+- `mois-resident-population` — 행정안전부 주민등록 인구현황
+- `molit-apartment-trade` — 국토교통부 아파트 매매 실거래자료
+
+각 manifest는 provider, endpoint, 필요한 환경변수, 기본 파라미터, fallback, safety를 포함합니다.

@@ -38,6 +38,7 @@ npm run example:hwp
 
 ```bash
 node scripts/list-skills.mjs
+npm run catalog:public-data
 ```
 
 처음이라면 [시작하기](docs/getting-started.md)를 먼저 보세요.
