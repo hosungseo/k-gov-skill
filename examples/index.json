@@ -1,0 +1,54 @@
+{
+  "count": 7,
+  "examples": [
+    {
+      "id": "bill-response-draft",
+      "title": "bill-response-draft",
+      "readme": "examples/bill-response-draft/README.md",
+      "command": null,
+      "purpose": ""
+    },
+    {
+      "id": "gazette-jikje-watch",
+      "title": "예제: 관보 직제·정원 Watch",
+      "readme": "examples/gazette-jikje-watch/README.md",
+      "command": "npm run example:gazette",
+      "purpose": "관보 검색은 공공데이터포털 serviceKey 없이도 공개 코퍼스 기반으로 시작할 수 있습니다."
+    },
+    {
+      "id": "hwp-document-packet",
+      "title": "예제: HWP/HWPX 문서 검토 패킷",
+      "readme": "examples/hwp-document-packet/README.md",
+      "command": "npm run example:hwp",
+      "purpose": "공무원 업무에서 HWP/HWPX는 가장 자주 만나는 병목입니다. 이 예제는 파일을 바로 외부에 올리지 않고, 로컬 처리 원칙과 추출 계획을 먼저 패킷화합니다."
+    },
+    {
+      "id": "korean-law-citation-packet",
+      "title": "예제: 법령 인용 검증 패킷",
+      "readme": "examples/korean-law-citation-packet/README.md",
+      "command": "npm run example:law",
+      "purpose": "법령 검색 결과를 그냥 요약하지 않고, 업무 문서에 붙일 수 있는 citation packet으로 정리합니다."
+    },
+    {
+      "id": "org-quota-review-packet",
+      "title": "예제: 직제·정원 검토 패킷",
+      "readme": "examples/org-quota-review-packet/README.md",
+      "command": "npm run example:org-quota",
+      "purpose": "기구·정원 요구자료를 바로 결론내리지 않고, 검토 가능한 업무 패킷으로 나눕니다."
+    },
+    {
+      "id": "prepare-public-data-call",
+      "title": "예제: API manifest에서 호출 준비하기",
+      "readme": "examples/prepare-public-data-call/README.md",
+      "command": "npm run example:prepare-api",
+      "purpose": "`skills/public-data-portal/apis/*.json`에 있는 manifest를 읽어서 호출 준비 패킷을 만듭니다."
+    },
+    {
+      "id": "public-data-first-call",
+      "title": "예제: 공공데이터포털 API 첫 호출",
+      "readme": "examples/public-data-first-call/README.md",
+      "command": "npm run example:public-data",
+      "purpose": "이 예제는 공공데이터포털 API를 처음 붙일 때의 기본 동작을 보여줍니다."
+    }
+  ]
+}
